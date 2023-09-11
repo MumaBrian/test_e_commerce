@@ -19,6 +19,10 @@ const xss = require('xss-clean');
 const cors = require('cors');
 const mongoSanitize = require('express-mongo-sanitize');
 
+const swaggerUi = require('swagger-ui-express')
+const YAML = require('yamljs')
+
+const swaggerDocument = YAML.load('./swagger.yaml')
 
 
 const port = process.env.PORT || 3000
@@ -54,6 +58,9 @@ app.use('/users', userRouter)
 app.use('/products', productRouter)
 app.use('/reviews', reviewRouter)
 app.use('/orders',orderRouter)
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 
 app.use(notFoundMiddleware)
 app.use(errorHandlerMiddleware)

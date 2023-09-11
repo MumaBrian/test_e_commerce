@@ -1,0 +1,739 @@
+openapi: 3.0.0
+info:
+  title: e_Commerce
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://e-commerce-wla3.onrender.com
+  variables: {}
+paths:
+  /auth/login:
+    post:
+      tags:
+      - Auth
+      summary: login
+      operationId: login
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/loginrequest'
+              - example:
+                  email: muma@gmail.com
+                  password: mumauser1
+            example:
+              email: muma@gmail.com
+              password: mumauser1
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/register:
+    post:
+      tags:
+      - Auth
+      summary: register
+      operationId: register
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/registerrequest'
+              - example:
+                  name: okay
+                  email: okay@gmail.com
+                  password: mumauser
+            example:
+              name: okay
+              email: okay@gmail.com
+              password: mumauser
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/logout/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The user ID
+    get:
+      tags:
+      - Auth
+      summary: logout
+      operationId: logout
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users:
+    get:
+      tags:
+      - User
+      summary: getAllUsers
+      operationId: getAllUsers
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /users/show:
+    get:
+      tags:
+      - User
+      summary: showCurrentUser
+      operationId: showCurrentUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/update-user:
+    patch:
+      tags:
+      - User
+      summary: updateUser
+      operationId: updateUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/updateUserRequest'
+              - example:
+                  email: muma@gmail.com
+                  name: mumab
+            example:
+              email: muma@gmail.com
+              name: mumab
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/update-user-password:
+    patch:
+      tags:
+      - User
+      summary: updateUserPassword
+      operationId: updateUserPassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/updateUserPasswordRequest'
+              - example:
+                  oldPassword: mumauser
+                  newPassword: mumauser1
+            example:
+              oldPassword: mumauser
+              newPassword: mumauser1
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The user ID
+    get:
+      tags:
+      - User
+      summary: getSingleUser
+      operationId: getSingleUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The product ID
+    get:
+      tags:
+      - Product
+      summary: getSingleProduct
+      operationId: getSingleProduct
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+      - Product
+      summary: updateProduct
+      operationId: updateProduct
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/updateProductRequest'
+              - example:
+                  name: okay na
+            example:
+              name: okay na
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+      - Product
+      summary: deleteProduct
+      operationId: deleteProduct
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products:
+    get:
+      tags:
+      - Product
+      summary: getAllProducts
+      operationId: getAllProducts
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+      - Product
+      summary: createProduct
+      operationId: createProduct
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/createProductRequest'
+              - example:
+                  name: product 1
+                  price: 25999
+                  image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+                  colors:
+                  - '#ff0000'
+                  - '#00ff00'
+                  - '#0000ff'
+                  company: marcos
+                  description: Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge
+                  category: office
+            example:
+              name: product 1
+              price: 25999
+              image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+              colors:
+              - '#ff0000'
+              - '#00ff00'
+              - '#0000ff'
+              company: marcos
+              description: Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge
+              category: office
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products/upload-image:
+    post:
+      tags:
+      - Product
+      summary: uploadImage
+      operationId: uploadImage
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products/{id}/reviews:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The product ID
+    get:
+      tags:
+      - Product
+      summary: getSingleProductReviews
+      operationId: getSingleProductReviews
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /reviews:
+    post:
+      tags:
+      - Review
+      summary: createReview
+      operationId: createReview
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/createReviewRequest'
+              - example:
+                  rating: '5'
+                  title: fish
+                  comment: okay
+                  product: 64fadf0ed091dfc8688a613a
+            example:
+              rating: '5'
+              title: fish
+              comment: okay
+              product: 64fadf0ed091dfc8688a613a
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+      - Review
+      summary: getAllReviews
+      operationId: getAllReviews
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /reviews/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The review ID
+    get:
+      tags:
+      - Review
+      summary: getSingleReview
+      operationId: getSingleReview
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+      - Review
+      summary: deleteReview
+      operationId: deleteReview
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  
+    patch:
+      tags:
+      - Review
+      summary: updateReview
+      operationId: updateReview
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/updateReviewRequest'
+              - example:
+                  rating: '5'
+                  title: cool
+                  comment: top top
+            example:
+              rating: '5'
+              title: cool
+              comment: top top
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders:
+    get:
+      tags:
+      - Order
+      summary: getAllOrders,
+      operationId: getAllOrders,
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+      - Order
+      summary: createOrder
+      operationId: createOrder
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/createOrderRequest'
+              - example:
+                  tax: 399
+                  shippingFee: 499
+                  items:
+                  - name: accent chair
+                    price: 2599
+                    image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+                    amount: 34
+                    product: 64fadf0ed091dfc8688a613a
+            example:
+              tax: 399
+              shippingFee: 499
+              items:
+              - name: accent chair
+                price: 2599
+                image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+                amount: 34
+                product: 64fadf0ed091dfc8688a613a
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The order ID
+    patch:
+      tags:
+      - Order
+      summary: updateOrder
+      operationId: updateOrder
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/updateReviewRequest'
+              - example:
+                 paymentIntentId:
+            example:
+              paymentIntentId: '5vbnbnvbnv'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+      - Order
+      summary: getSingleOrder
+      operationId: getSingleOrder
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders/show:
+    get:
+      tags:
+      - Order
+      summary: getCurrentUserOrders
+      operationId: getCurrentUserOrders
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    loginrequest:
+      title: loginrequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: muma@gmail.com
+        password: mumauser1
+    registerrequest:
+      title: registerrequest
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: okay
+        email: okay@gmail.com
+        password: mumauser
+    updateUserRequest:
+      title: updateUserRequest
+      required:
+      - email
+      - name
+      type: object
+      properties:
+        email:
+          type: string
+        name:
+          type: string
+      example:
+        email: muma@gmail.com
+        name: mumab
+    updateUserPasswordRequest:
+      title: updateUserPasswordRequest
+      required:
+      - oldPassword
+      - newPassword
+      type: object
+      properties:
+        oldPassword:
+          type: string
+        newPassword:
+          type: string
+      example:
+        oldPassword: mumauser
+        newPassword: mumauser1
+    updateProductRequest:
+      title: updateProductRequest
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: okay na
+    createProductRequest:
+      title: createProductRequest
+      required:
+      - name
+      - price
+      - image
+      - colors
+      - company
+      - description
+      - category
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: integer
+          format: int32
+        image:
+          type: string
+        colors:
+          type: array
+          items:
+            type: string
+          description: ''
+        company:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+      example:
+        name: product 1
+        price: 25999
+        image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+        colors:
+        - '#ff0000'
+        - '#00ff00'
+        - '#0000ff'
+        company: marcos
+        description: Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge
+        category: office
+    createReviewRequest:
+      title: createReviewRequest
+      required:
+      - rating
+      - title
+      - comment
+      - product
+      type: object
+      properties:
+        rating:
+          type: string
+        title:
+          type: string
+        comment:
+          type: string
+        product:
+          type: string
+      example:
+        rating: '5'
+        title: fish
+        comment: okay
+        product: 64fadf0ed091dfc8688a613a
+    updateReviewRequest:
+      title: updateReviewRequest
+      required:
+      - rating
+      - title
+      - comment
+      type: object
+      properties:
+        rating:
+          type: string
+        title:
+          type: string
+        comment:
+          type: string
+      example:
+        rating: '5'
+        title: cool
+        comment: top top
+    createOrderRequest:
+      title: createOrderRequest
+      required:
+      - tax
+      - shippingFee
+      - items
+      type: object
+      properties:
+        tax:
+          type: integer
+          format: int32
+        shippingFee:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+          description: ''
+      example:
+        tax: 399
+        shippingFee: 499
+        items:
+        - name: accent chair
+          price: 2599
+          image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+          amount: 34
+          product: 64fadf0ed091dfc8688a613a
+    Item:
+      title: Item
+      required:
+      - name
+      - price
+      - image
+      - amount
+      - product
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: integer
+          format: int32
+        image:
+          type: string
+        amount:
+          type: integer
+          format: int32
+        product:
+          type: string
+      example:
+        name: accent chair
+        price: 2599
+        image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+        amount: 34
+        product: 64fadf0ed091dfc8688a613a
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+- httpBearer: []
+tags:
+- name: Auth
+- name: User
+- name: Product
+- name: Review
+- name: Order
